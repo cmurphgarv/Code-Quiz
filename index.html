@@ -25,12 +25,10 @@
         <div class="time_line"></div>
     </header>
 
-    <!--Create containers for questions, answer choice buttons-->
+    <!--Create containers for questions, answer choice buttons and displaying whether the answer give is right or wrong-->
     <main>
         <section>
-            <div class="question" class="hide">
-
-
+            <div class="question hide">
             </div>
             <div id="answer-buttons" class="hide">
                 <button class="answer-btn">Answer 1</button>
@@ -38,15 +36,24 @@
                 <button class="answer-btn">Answer 3</button>
                 <button class="answer-btn">Answer 4</button>
             </div>
+            <div class="displayAnswer hide"></div>
 
         </section>
 
-        <!--Section for stating whether the user's answer is correct or incorrect-->
+        <!--Section for end of the game-->
         <section>
-            <div class="results"></div>
+            <div class="results hide">
+                <h2>All Done!</h2>
+                <p>Your Score Is: <span id="finalScore"></span></p>
+                <label for="name">Enter Initials: </label>
+                <input type="text" id="name" name="name">
+                <button id="submitBtn">Submit</button>
+            </div>
         </section>
 
         <!--Link to High Score Board-->
+        <a id="scoreLink"></a>
+        <div id="highScoreBoard"></div>
 
 
     </main>
