@@ -9,6 +9,8 @@ var finalScore = document.querySelector("#finalScore");
 var score = 0;
 var submitButton = document.querySelector("#submitBtn");
 var scoreLinkEl = document.querySelector("#scoreLink");
+var highScores = localStorage.getItem("highScores") || [];
+var initialsInput = document.querySelector("#name");
 
 // create array of questions for quiz
 const questions = [
@@ -124,6 +126,16 @@ function endGame() {
 
 }
 
+// store high score in local storage
 function makeScore() {
+    var initials = initialsInput.value;
+    highScores.push({initials: initials, score: score});
+    //sort scores in descending order
+    highScores.sort((a,b) => a.score - b.score);
+    localStorage.setItem("highScores", highScores);
+    displayScoreBoard();
+}
+
+function displayScoreBoard() {
     
 }
