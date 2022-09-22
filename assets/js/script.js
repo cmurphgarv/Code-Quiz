@@ -9,8 +9,10 @@ var finalScore = document.querySelector("#finalScore");
 var score = 0;
 var submitButton = document.querySelector("#submitBtn");
 var scoreLinkEl = document.querySelector("#scoreLink");
-var highScores = localStorage.getItem("highScores") || [];
+var highScores = JSON.parse(localStorage.getItem("highScores") || "[]");
 var initialsInput = document.querySelector("#name");
+var scoreBoard = document.querySelector("#highScoreBoard");
+var listEl = document.querySelector("#scoreList");
 
 // create array of questions for quiz
 const questions = [
@@ -132,10 +134,19 @@ function makeScore() {
     highScores.push({initials: initials, score: score});
     //sort scores in descending order
     highScores.sort((a,b) => a.score - b.score);
-    localStorage.setItem("highScores", highScores);
+    localStorage.setItem("highScores", JSON.stringify(highScores));
     displayScoreBoard();
 }
 
 function displayScoreBoard() {
-    
+    highScores.forEach(i => {
+        var scoreItem = document.createElement("li");
+        scoreItem.textContent = i.initials + ": " + i.score;
+        listEl.appendChild(scoreItem);
+    });
+
+    endGameEl.classList.add("hide");
+    scoreBoard.classList.remove("hide");
+
+
 }

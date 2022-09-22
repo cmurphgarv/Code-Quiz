@@ -2,12 +2,19 @@ body {
     font-family: "Quicksand", Arial, Helvetica, sans-serif;
 }
 
-button {
-    font-family: "Quicksand", Arial, Helvetica, sans-serif;
+.hide {
+    display: none !important;
 }
 
-.hide {
-    display: none;
+button {
+    background-color: #4453f8;
+    font-family: "Quicksand", Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+}
+
+button:hover {
+    background-color: #4482f8;
 }
 
 h1 {
