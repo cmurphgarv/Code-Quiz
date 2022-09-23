@@ -53,10 +53,12 @@ h3 {
     font-weight: bold;
 }
 
-#quizCard {
+#quizCard, #scoreList {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
 }
 
 .question {
@@ -68,6 +70,9 @@ h3 {
     grid-template-columns: repeat(1, auto);
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
 }
 
 #scoreHead {
