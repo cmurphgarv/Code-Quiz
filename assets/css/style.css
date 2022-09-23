@@ -3,7 +3,7 @@ body {
 }
 
 .hide {
-    display: none !important;
+    display: none;
 }
 
 button {
@@ -29,6 +29,20 @@ h3 {
     margin-right: 200px;
 }
 
+.start-button {
+    position: fixed;
+    left: 47%;
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+
+#submitBtn {
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+}
 
 .timer {
     position: absolute;
@@ -39,6 +53,15 @@ h3 {
     font-weight: bold;
 }
 
+#quizCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.question {
+    font-weight: bold;
+}
 
 .answer-btn {
     display: grid;
@@ -54,3 +77,4 @@ h3 {
     font-size: 15px;
 
 }
+

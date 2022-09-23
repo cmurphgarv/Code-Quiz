@@ -13,6 +13,10 @@ var highScores = JSON.parse(localStorage.getItem("highScores") || "[]");
 var initialsInput = document.querySelector("#name");
 var scoreBoard = document.querySelector("#highScoreBoard");
 var listEl = document.querySelector("#scoreList");
+var timeLeft = 60;
+var timerEl = document.querySelector(".timer-sec");
+var timer;
+var backButton = document.querySelector("#backButton");
 
 // create array of questions for quiz
 const questions = [
@@ -85,6 +89,7 @@ function startGame() {
     questionContainerEl.classList.remove("hide");
     answerContainerEl.classList.remove("hide"); 
     setQuestion();
+    startTimer();
 }
 
 // iterate through questions array and show one at a time for user to answer
@@ -100,6 +105,17 @@ function setQuestion() {
     
 }
 
+function startTimer() {
+    timer = setInterval(function() {
+        timeLeft--;
+        timerEl.textContent = timeLeft;
+    if (timeLeft == 0) {
+        endGame();
+      }
+    }, 1000);
+    
+}
+
 // determine if selected button is correct answer and display it
 function isCorrect() {
     answerDisplayEl.classList.remove("hide");
@@ -107,13 +123,16 @@ function isCorrect() {
         answerDisplayEl.textContent = "Correct!"
         score += 5;
     } else {
-        answerDisplayEl.textContent = "Wrong!"
+        answerDisplayEl.textContent = "Wrong!";
+        timeLeft = timeLeft - 10;
+        timerEl.textContent = timeLeft;
     }
     
     if(questions.length > 0) {
         setQuestion();
     } else {
         endGame();
+        
     }
 }
 
@@ -123,6 +142,9 @@ function endGame() {
     questionContainerEl.classList.add("hide");
     answerContainerEl.classList.add("hide"); 
     endGameEl.classList.remove("hide");
+    clearInterval(timer);
+    timerEl.textContent = 0;
+
 
     finalScore.textContent = score;
 
@@ -133,11 +155,12 @@ function makeScore() {
     var initials = initialsInput.value;
     highScores.push({initials: initials, score: score});
     //sort scores in descending order
-    highScores.sort((a,b) => a.score - b.score);
+    highScores.sort((a,b) => b.score - a.score);
     localStorage.setItem("highScores", JSON.stringify(highScores));
     displayScoreBoard();
 }
 
+// make high score board
 function displayScoreBoard() {
     highScores.forEach(i => {
         var scoreItem = document.createElement("li");
@@ -147,6 +170,5 @@ function displayScoreBoard() {
 
     endGameEl.classList.add("hide");
     scoreBoard.classList.remove("hide");
-
 
 }
